@@ -41,4 +41,5 @@ class Model:
 
     def raggiungibili(self,v):
         lista = nx.dfs_tree(self.grafo,self.idmap[v])
+        lista.remove_node(self.idmap[v])
         return lista.nodes

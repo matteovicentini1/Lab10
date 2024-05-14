@@ -11,7 +11,7 @@ class DAO():
         result = []
 
         cursor = conn.cursor(dictionary=True)
-        query = '''select state1ab ,state1no 
+        query = '''select state1ab ,state1no , c2.StateNme
                 from contiguity c  
                 join country c2 on c.state1no =c2.CCode 
                 where `year` <= %s
@@ -20,7 +20,7 @@ class DAO():
         cursor.execute(query, (y,))
 
         for row in cursor:
-            result.append(Country(row['state1ab'],row['state1no']))
+            result.append(Country(row['state1ab'],row['state1no'], row['StateNme']))
 
         cursor.close()
         conn.close()
